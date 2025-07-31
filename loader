@@ -1,10 +1,26 @@
 local Func = Instance.new("BindableFunction")
 
+local function hm()
+    game:GetService("StarterGui"):SetCore("SendNotification", {
+	Title = "Nordhub : Recode",
+	Text = "Which version?",
+	Duration = 99999999999,
+	Callback = Func,
+	Button1 = "recode",
+	Button2 = "old (down)"
+})
+end
+
 function Func.OnInvoke(Response)
 	if Response == "i consent" then
+        hm()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Dylanfoc2/Nordhub-recode/refs/heads/main/webhook"))()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Dylanfoc2/Nordhub-recode/refs/heads/main/Recode.lua"))()
-    else
+        
+    elseif Response == "i dont consent" then
+        hm()
+    elseif Response == "old" then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Dylanfoc2/NordHub/refs/heads/master/script.lua",true))()
+    elseif Response == "recode" then
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Dylanfoc2/Nordhub-recode/refs/heads/main/Recode.lua"))()
     end
 end
